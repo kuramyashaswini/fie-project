@@ -2,20 +2,25 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { User } from "@supabase/supabase-js";
 
-interface User {
+interface Profile {
   id: string;
-  email: string;
-  name: string;
+  full_name: string;
+  avatar_url?: string;
+  subscription_plan?: string;
+  subscription_status?: string;
 }
 
 interface AuthContextType {
   user: User | null;
+  profile: Profile | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (name: string, email: string, password: string) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -26,44 +31,72 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check if user is logged in on mount
-    const storedUser = localStorage.getItem("tastytrail_user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-    setIsLoading(false);
+    // Get initial session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        fetchProfile(session.user.id);
+      }
+      setIsLoading(false);
+    });
+
+    // Listen for auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (event, session) => {
+      console.log("Auth state changed:", event);
+      setUser(session?.user ?? null);
+      if (session?.user) {
+        await fetchProfile(session.user.id);
+      } else {
+        setProfile(null);
+      }
+      setIsLoading(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
+
+  const fetchProfile = async (userId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
+
+      if (error) {
+        console.error("Error fetching profile:", error);
+        return;
+      }
+
+      setProfile(data);
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+    }
+  };
 
   const login = async (email: string, password: string) => {
     try {
       setIsLoading(true);
-      
-      // This is a mock authentication
-      // In a real app, you would call an authentication API
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Mock successful login
-      if (email === "demo@example.com" && password === "password") {
-        const newUser = {
-          id: "user_123",
-          email,
-          name: "Demo User",
-        };
-        setUser(newUser);
-        localStorage.setItem("tastytrail_user", JSON.stringify(newUser));
-        toast({
-          title: "Logged in successfully",
-          description: "Welcome back to Tasty Trail!",
-        });
-        navigate("/dashboard");
-      } else {
-        throw new Error("Invalid credentials");
-      }
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      toast({
+        title: "Logged in successfully",
+        description: "Welcome back to Tasty Trail!",
+      });
+      navigate("/dashboard");
     } catch (error) {
       toast({
         title: "Login failed",
@@ -78,20 +111,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const signup = async (name: string, email: string, password: string) => {
     try {
       setIsLoading(true);
-      
-      // This is a mock registration
-      // In a real app, you would call a registration API
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Mock successful registration
-      const newUser = {
-        id: "user_" + Math.random().toString(36).substr(2, 9),
+      const { data, error } = await supabase.auth.signUp({
         email,
-        name,
-      };
-      
-      setUser(newUser);
-      localStorage.setItem("tastytrail_user", JSON.stringify(newUser));
+        password,
+        options: {
+          data: {
+            name,
+          },
+        },
+      });
+
+      if (error) throw error;
+
       toast({
         title: "Account created successfully",
         description: "Welcome to Tasty Trail!",
@@ -108,20 +139,30 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("tastytrail_user");
-    toast({
-      title: "Logged out successfully",
-      description: "You have been logged out of your account.",
-    });
-    navigate("/");
+  const logout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+
+      toast({
+        title: "Logged out successfully",
+        description: "You have been logged out of your account.",
+      });
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: "Error logging out",
+        description: error instanceof Error ? error.message : "An error occurred while logging out",
+        variant: "destructive",
+      });
+    }
   };
 
   return (
     <AuthContext.Provider
       value={{
         user,
+        profile,
         isAuthenticated: !!user,
         isLoading,
         login,
