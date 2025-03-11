@@ -16,6 +16,11 @@ import NotFound from "./pages/NotFound";
 import MealPlans from "./pages/MealPlans";
 import HowItWorks from "./pages/HowItWorks";
 import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Shipping from "./pages/Shipping";
+import Refund from "./pages/Refund";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +40,11 @@ const App = () => (
               <Route path="/plans" element={<MealPlans />} />
               <Route path="/about" element={<HowItWorks />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/privacy" element={<Privacy />} />
+              <Route path="/terms" element={<Terms />} />
+              <Route path="/shipping" element={<Shipping />} />
+              <Route path="/refund" element={<Refund />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
