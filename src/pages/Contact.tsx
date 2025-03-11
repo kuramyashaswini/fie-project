@@ -27,7 +27,7 @@ const Contact = () => {
     {
       icon: <Phone className="h-6 w-6" />,
       title: "Phone",
-      details: "+1 (555) 123-4567",
+      details: "+91 555 123-4567",
     },
     {
       icon: <Mail className="h-6 w-6" />,
@@ -75,14 +75,7 @@ const Contact = () => {
             </div>
 
             <div className="rounded-lg overflow-hidden">
-              <iframe
-                title="map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387193.305935303!2d-74.25986548248684!3d40.69714941932609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2s!4v1645564650895!5m2!1sen!2s"
-                width="100%"
-                height="300"
-                style={{ border: 0 }}
-                loading="lazy"
-              />
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.2379549170582!2d77.67721322478779!3d9.57474519051006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06dbc06968e9eb%3A0x6cfd8f94e42f98c4!2sKalasalingam%20Academy%20of%20Research%20and%20Education!5e0!3m2!1sen!2sin!4v1741721735152!5m2!1sen!2sin" width="100%" height="300" loading="lazy"></iframe>
             </div>
           </div>
 

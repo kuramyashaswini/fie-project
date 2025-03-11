@@ -166,7 +166,7 @@ const Dashboard = () => {
                         <h3 className="font-semibold text-lg">Family Plan</h3>
                         <p className="text-muted-foreground">5 meals per week</p>
                         <p className="text-sm text-muted-foreground mt-1">
-                          Next billing: July 1, 2023
+                          Next billing: July 1, 2025
                         </p>
                       </div>
                       <div className="flex flex-col gap-2">

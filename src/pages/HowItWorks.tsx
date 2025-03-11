@@ -21,7 +21,7 @@ const HowItWorks = () => {
       icon: <Workflow className="h-8 w-8" />,
     },
     {
-      title: "Heat & Enjoy",
+      title: "Heat & Eat",
       description: "Simply heat your meals following our instructions and enjoy restaurant-quality food at home.",
       icon: <Puzzle className="h-8 w-8" />,
     },
@@ -60,7 +60,7 @@ const HowItWorks = () => {
 
         <div className="mt-16 text-center">
           <img
-            src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+            src="https://atchayapathrafoods.com/wp-content/uploads/2019/11/Homemade-Food-Delivery-Services-in-Madurai.jpg"
             alt="Meal preparation"
             className="rounded-lg max-w-4xl mx-auto mb-8"
           />

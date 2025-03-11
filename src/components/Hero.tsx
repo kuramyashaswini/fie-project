@@ -58,7 +58,7 @@ const Hero = () => {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <img
-                src="https://images.unsplash.com/photo-1618160702438-9b02ab6515c9"
+                src="https://atchayapathrafoods.com/wp-content/uploads/2019/11/Homemade-Food-Delivery-Services-in-Madurai.jpg"
                 alt="Delicious home-cooked food"
                 className="w-full h-auto object-cover"
               />
