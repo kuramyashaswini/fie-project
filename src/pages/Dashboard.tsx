@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,7 +10,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
 
 const Dashboard = () => {
-  const { user, isAuthenticated, logout } = useAuth();
+  const { user, profile, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("upcoming");
   const [progress, setProgress] = useState(0);
@@ -78,13 +77,13 @@ const Dashboard = () => {
               <CardHeader className="pb-4">
                 <div className="flex items-center space-x-3">
                   <Avatar className="h-12 w-12 border-2 border-primary">
-                    <AvatarImage src="" alt={user?.name || "User"} />
+                    <AvatarImage src={profile?.avatar_url || ""} alt={profile?.full_name || "User"} />
                     <AvatarFallback className="bg-primary/10 text-primary">
-                      {user?.name?.charAt(0) || "U"}
+                      {profile?.full_name?.charAt(0) || "U"}
                     </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">{user?.name}</p>
+                    <p className="font-medium">{profile?.full_name}</p>
                     <p className="text-sm text-muted-foreground">{user?.email}</p>
                   </div>
                 </div>
@@ -141,7 +140,7 @@ const Dashboard = () => {
               {/* Greeting */}
               <div className="mb-8">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2">
-                  Welcome back, {user?.name?.split(' ')[0]}!
+                  Welcome back, {profile?.full_name?.split(' ')[0] || 'User'}!
                 </h1>
                 <p className="text-muted-foreground">
                   Manage your meal deliveries and subscription from your dashboard.
@@ -297,3 +296,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
