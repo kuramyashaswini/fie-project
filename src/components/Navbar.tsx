@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -20,7 +19,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      className={`fixed top-0 z-50 w-full text-white transition-all duration-300 ${
         isScrolled
           ? "backdrop-blur-md bg-background/80 shadow-md py-3"
           : "bg-transparent py-5"
@@ -32,7 +31,12 @@ const Navbar = () => {
             to="/"
             className="flex items-center gap-2 text-2xl font-bold text-primary"
           >
-            <ShoppingBag className="h-8 w-8" />
+            <img
+              src="../../Home img.png"
+              alt="Logo"
+              width="42px"
+              height="42px"
+            />
             <span className="hidden sm:inline-block">Tasty Trail</span>
           </Link>
 
@@ -40,40 +44,49 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-8">
             <Link
               to="/"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
             >
               Home
             </Link>
             <Link
               to="/plans"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
             >
               Meal Plans
             </Link>
             <Link
               to="/about"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
             >
               How It Works
             </Link>
             <Link
               to="/blog"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
             >
               Blog
             </Link>
             <Link
               to="/contact"
-              className="text-foreground hover:text-primary transition-colors"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
             >
               Contact
+            </Link>
+            <Link
+              to="/FAQ"
+              className="text-orange-500 hover:text-black hover:bg-orange-500 transition-colors px-2 py-1 rounded-md"
+            >
+              FAQ's
             </Link>
           </div>
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
             <Link to="/login">
-              <Button variant="ghost" className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                className="flex items-center gap-2 text-orange-500 hover:text-black transition-colors"
+              >
                 <User className="h-4 w-4" />
                 Login
               </Button>
@@ -146,7 +159,10 @@ const Navbar = () => {
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
                 <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button variant="ghost" className="w-full justify-start">
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-start text-white"
+                  >
                     <User className="h-4 w-4 mr-2" />
                     Login
                   </Button>

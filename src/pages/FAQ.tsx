@@ -35,13 +35,38 @@ const FAQ = () => {
       answer:
         "Our boxes are packaged with insulated liners and ice packs to keep your food fresh for up to 12 hours after delivery. You don't need to be home to receive your delivery.",
     },
+    {
+      question: "How do I change my meal preferences?",
+      answer:
+        "You can update your meal preferences anytime by logging into your account and selecting 'Meal Preferences' under account settings.",
+    },
+    {
+      question: "Do you offer family-size meal plans?",
+      answer:
+        "Yes, we offer both individual and family-size meal plans. You can choose the option that best suits your needs when signing up or in your account settings.",
+    },
+    {
+      question: "Can I recycle the packaging?",
+      answer:
+        "Yes! Most of our packaging materials are recyclable. Check your local recycling guidelines for specifics on how to dispose of liners and ice packs.",
+    },
+    {
+      question: "How do I cancel my subscription?",
+      answer:
+        "You can cancel your subscription at any time by visiting your account settings. Be sure to cancel before the weekly cutoff to avoid being charged for the next week's delivery.",
+    },
+    {
+      question: "Will I get Money back if I cancel sunscription?",
+      answer: "No, Money Will not be refunded in case cancelation.",
+    },
   ];
 
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      transition={{ duration: 0.4 }}
       className="min-h-screen pt-24 pb-16"
     >
       <Navbar />
@@ -51,10 +76,16 @@ const FAQ = () => {
         </h1>
         <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible>
-            {faqs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`}>
-                <AccordionTrigger>{faq.question}</AccordionTrigger>
-                <AccordionContent>{faq.answer}</AccordionContent>
+            {faqs.map((faq) => (
+              <AccordionItem key={faq.question} value={faq.question}>
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                >
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </motion.div>
               </AccordionItem>
             ))}
           </Accordion>

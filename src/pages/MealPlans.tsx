@@ -117,7 +117,7 @@ const MealPlans = () => {
         "Flexible delivery schedule",
         "Free delivery",
       ],
-      priceMonthly: 10000,
+      priceMonthly: 1800,
       priceWeekly: 500,
       cta: "Get Started",
       popular: false,
@@ -133,7 +133,7 @@ const MealPlans = () => {
         "Customizable menu options",
         "Priority customer support",
       ],
-      priceMonthly: 18000,
+      priceMonthly: 2000,
       priceWeekly: 800,
       cta: "Choose Family",
       popular: true,
@@ -150,7 +150,7 @@ const MealPlans = () => {
         "24/7 concierge support",
         "Special occasion meals",
       ],
-      priceMonthly: 25000,
+      priceMonthly: 4000,
       priceWeekly: 1200,
       cta: "Go Gourmet",
       popular: false,
@@ -158,7 +158,7 @@ const MealPlans = () => {
   ];
 
   return (
-    <section id="plans" className="py-16 md:py-24 bg-muted/50">
+    <section id="plans" className="py-16 md:py-24 bg-muted/50 mb-8">
       <Navbar />
       <div className="container mx-auto px-4 md:px-6 mt-6">
         <div className="text-center max-w-3xl mx-auto mb-12">

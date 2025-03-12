@@ -21,7 +21,7 @@ const Index = () => {
   }, [controls, inView]);
 
   return (
-    <div className="overflow-x-hidden" style={{ backgroundColor: "#f5f5f5" }}>
+    <div className="overflow-x-hidden">
       <Navbar />
 
       <main>

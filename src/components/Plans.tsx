@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
@@ -18,7 +17,7 @@ const Plans = () => {
         "Flexible delivery schedule",
         "Free delivery",
       ],
-      priceMonthly: 10000,
+      priceMonthly: 1800,
       priceWeekly: 500,
       cta: "Get Started",
       popular: false,
@@ -34,7 +33,7 @@ const Plans = () => {
         "Customizable menu options",
         "Priority customer support",
       ],
-      priceMonthly: 18000,
+      priceMonthly: 2000,
       priceWeekly: 800,
       cta: "Choose Family",
       popular: true,
@@ -51,7 +50,7 @@ const Plans = () => {
         "24/7 concierge support",
         "Special occasion meals",
       ],
-      priceMonthly: 25000,
+      priceMonthly: 4000,
       priceWeekly: 1200,
       cta: "Go Gourmet",
       popular: false,
@@ -59,7 +58,7 @@ const Plans = () => {
   ];
 
   return (
-    <section id="plans" className="py-16 md:py-24 bg-muted/50">
+    <section id="plans" className="py-16 md:py-24 bg-muted/50 mb-8">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center max-w-3xl mx-auto mb-12">
           <span className="inline-block px-4 py-1 mb-4 text-sm font-medium rounded-full bg-secondary text-primary">
@@ -69,28 +68,36 @@ const Plans = () => {
             Choose Your Perfect Meal Plan
           </h2>
           <p className="text-lg text-muted-foreground mb-8">
-            Select the plan that fits your lifestyle and preferences. All plans include
-            chef-crafted meals delivered right to your door.
+            Select the plan that fits your lifestyle and preferences. All plans
+            include chef-crafted meals delivered right to your door.
           </p>
 
           {/* Toggle switch */}
           <div className="flex justify-center items-center space-x-4 mb-8">
-            <span className={`text-sm font-medium ${!isMonthly ? 'text-foreground' : 'text-muted-foreground'}`}>
+            <span
+              className={`text-sm font-medium ${
+                !isMonthly ? "text-foreground" : "text-muted-foreground"
+              }`}
+            >
               Weekly
             </span>
             <button
               onClick={() => setIsMonthly(!isMonthly)}
               className={`relative inline-flex h-6 w-12 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 ${
-                isMonthly ? 'bg-primary' : 'bg-muted-foreground/30'
+                isMonthly ? "bg-primary" : "bg-muted-foreground/30"
               }`}
             >
               <span
                 className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isMonthly ? 'translate-x-6' : 'translate-x-1'
+                  isMonthly ? "translate-x-6" : "translate-x-1"
                 }`}
               />
             </button>
-            <span className={`text-sm font-medium ${isMonthly ? 'text-foreground' : 'text-muted-foreground'}`}>
+            <span
+              className={`text-sm font-medium ${
+                isMonthly ? "text-foreground" : "text-muted-foreground"
+              }`}
+            >
               Monthly
               <span className="ml-1 text-xs text-primary">Save 20%</span>
             </span>
@@ -106,7 +113,7 @@ const Plans = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               viewport={{ once: true, margin: "-50px" }}
               className={`relative bg-background rounded-2xl p-8 shadow-lg border ${
-                plan.popular ? 'border-primary' : 'border-border'
+                plan.popular ? "border-primary" : "border-border"
               } overflow-hidden`}
             >
               {plan.popular && (
@@ -126,7 +133,7 @@ const Plans = () => {
                     ₹ {isMonthly ? plan.priceMonthly : plan.priceWeekly}
                   </span>
                   <span className="text-muted-foreground ml-2">
-                    /{isMonthly ? 'month' : 'week'}
+                    /{isMonthly ? "month" : "week"}
                   </span>
                 </div>
                 {isMonthly && (
@@ -149,7 +156,9 @@ const Plans = () => {
                 <Button
                   variant={plan.popular ? "default" : "outline"}
                   className={`w-full ${
-                    plan.popular ? '' : 'hover:bg-primary hover:text-primary-foreground'
+                    plan.popular
+                      ? ""
+                      : "hover:bg-primary hover:text-primary-foreground"
                   }`}
                 >
                   {plan.cta}

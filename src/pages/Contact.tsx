@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,6 +6,8 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 import { toast } from "sonner";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -48,6 +49,7 @@ const Contact = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-16"
     >
+      <Navbar />
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl font-bold mb-6">Get in Touch</h1>
@@ -75,7 +77,12 @@ const Contact = () => {
             </div>
 
             <div className="rounded-lg overflow-hidden">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.2379549170582!2d77.67721322478779!3d9.57474519051006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06dbc06968e9eb%3A0x6cfd8f94e42f98c4!2sKalasalingam%20Academy%20of%20Research%20and%20Education!5e0!3m2!1sen!2sin!4v1741721735152!5m2!1sen!2sin" width="100%" height="300" loading="lazy"></iframe>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.2379549170582!2d77.67721322478779!3d9.57474519051006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b06dbc06968e9eb%3A0x6cfd8f94e42f98c4!2sKalasalingam%20Academy%20of%20Research%20and%20Education!5e0!3m2!1sen!2sin!4v1741721735152!5m2!1sen!2sin"
+                width="100%"
+                height="300"
+                loading="lazy"
+              ></iframe>
             </div>
           </div>
 
@@ -127,6 +134,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };
