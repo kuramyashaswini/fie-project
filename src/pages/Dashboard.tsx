@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -209,8 +208,8 @@ const Dashboard = () => {
                       </div>
                       <div className="flex flex-col gap-2">
                         <div className="text-right">
-                          <span className="text-2xl font-bold">$79</span>
-                          <span className="text-muted-foreground">/week</span>
+                          <span className="text-2xl font-bold">₹2000</span>
+                          <span className="text-muted-foreground">/month</span>
                         </div>
                         <div className="flex gap-2">
                           <Button size="sm" variant="outline">
