@@ -126,12 +126,6 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground mb-4 md:mb-0">
             © {new Date().getFullYear()} Tasty Trail. All rights reserved.
           </p>
-          <div className="flex items-center space-x-4">
-            <img src="https://via.placeholder.com/40x25" alt="Visa" className="h-6" />
-            <img src="https://via.placeholder.com/40x25" alt="Mastercard" className="h-6" />
-            <img src="https://via.placeholder.com/40x25" alt="American Express" className="h-6" />
-            <img src="https://via.placeholder.com/40x25" alt="PayPal" className="h-6" />
-          </div>
         </div>
       </div>
     </footer>
