@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
@@ -148,6 +147,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         title: "Logged out successfully",
         description: "You have been logged out of your account.",
       });
+      setUser(null);
+      setProfile(null);
       navigate("/");
     } catch (error) {
       toast({

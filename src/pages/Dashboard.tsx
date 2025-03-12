@@ -33,20 +33,17 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("upcoming");
   const [progress, setProgress] = useState(0);
 
-  // Redirect if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/login");
     }
   }, [isAuthenticated, navigate]);
 
-  // Animate progress bar on load
   useEffect(() => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // Handle logout
   const handleLogout = async () => {
     await logout();
     navigate("/");
@@ -95,7 +92,6 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-6">
           <Navbar />
-          {/* Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -163,7 +159,6 @@ const Dashboard = () => {
             </Card>
           </motion.div>
 
-          {/* Main Content */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -171,7 +166,6 @@ const Dashboard = () => {
             className="flex-1"
           >
             <div className="space-y-6">
-              {/* Greeting */}
               <div className="mb-8">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2">
                   Welcome back, {profile?.full_name?.split(" ")[0] || "User"}!
@@ -182,7 +176,6 @@ const Dashboard = () => {
                 </p>
               </div>
 
-              {/* Subscription Overview */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -231,7 +224,6 @@ const Dashboard = () => {
                 </Card>
               </motion.div>
 
-              {/* Deliveries */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
