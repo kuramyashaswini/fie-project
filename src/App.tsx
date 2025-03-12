@@ -23,6 +23,8 @@ import Shipping from "./pages/Shipping";
 import Refund from "./pages/Refund";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
 
 // Food Category Pages
 import Tiffins from "./pages/food/Tiffins";
@@ -43,6 +45,8 @@ const App = () => (
               <Route path="/" element={<Index />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/plans" element={<MealPlans />} />
               <Route path="/about" element={<HowItWorks />} />

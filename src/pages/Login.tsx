@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -32,6 +33,15 @@ const Login = () => {
       toast({
         title: "Email confirmed",
         description: "Your email has been confirmed. You can now log in.",
+      });
+    }
+
+    // Check for password reset success
+    const reset = searchParams.get("reset");
+    if (reset === "success") {
+      toast({
+        title: "Password reset successful",
+        description: "Your password has been reset. You can now log in with your new password.",
       });
     }
 
