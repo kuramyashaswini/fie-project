@@ -13,13 +13,13 @@ const Plans = () => {
       name: "Starter",
       description: "Perfect for individuals or couples",
       features: [
-        "3 meals per week",
+        "Portion for 1 person",
         "Chef-crafted recipes",
         "Flexible delivery schedule",
         "Free delivery",
       ],
-      priceMonthly: 159,
-      priceWeekly: 49,
+      priceMonthly: 10000,
+      priceWeekly: 500,
       cta: "Get Started",
       popular: false,
     },
@@ -27,15 +27,15 @@ const Plans = () => {
       name: "Family",
       description: "Ideal for families and small gatherings",
       features: [
-        "5 meals per week",
+        "Portion for 2 people",
         "Chef-crafted recipes",
         "Flexible delivery schedule",
         "Free delivery",
         "Customizable menu options",
         "Priority customer support",
       ],
-      priceMonthly: 249,
-      priceWeekly: 79,
+      priceMonthly: 18000,
+      priceWeekly: 800,
       cta: "Choose Family",
       popular: true,
     },
@@ -43,7 +43,7 @@ const Plans = () => {
       name: "Gourmet",
       description: "Premium selections for food enthusiasts",
       features: [
-        "7 meals per week",
+        "Portion for 4 people",
         "Premium chef-crafted recipes",
         "Flexible delivery schedule",
         "Free priority delivery",
@@ -51,8 +51,8 @@ const Plans = () => {
         "24/7 concierge support",
         "Special occasion meals",
       ],
-      priceMonthly: 359,
-      priceWeekly: 109,
+      priceMonthly: 25000,
+      priceWeekly: 1200,
       cta: "Go Gourmet",
       popular: false,
     },
@@ -123,7 +123,7 @@ const Plans = () => {
               <div className="mb-8">
                 <div className="flex items-baseline">
                   <span className="text-4xl font-bold">
-                    ${isMonthly ? plan.priceMonthly : plan.priceWeekly}
+                    ₹ {isMonthly ? plan.priceMonthly : plan.priceWeekly}
                   </span>
                   <span className="text-muted-foreground ml-2">
                     /{isMonthly ? 'month' : 'week'}

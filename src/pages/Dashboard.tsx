@@ -1,13 +1,31 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Calendar, Clock, User, Settings, ShoppingBag, LogOut, Bell, Home } from "lucide-react";
+import {
+  Calendar,
+  Clock,
+  User,
+  Settings,
+  ShoppingBag,
+  LogOut,
+  Bell,
+  Home,
+} from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Progress } from "@/components/ui/progress";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const Dashboard = () => {
   const { user, profile, isAuthenticated, logout } = useAuth();
@@ -39,7 +57,11 @@ const Dashboard = () => {
       id: 2,
       date: "Wednesday, June 28",
       status: "Processing",
-      items: ["Salmon with Dill Sauce", "Mushroom Risotto", "Lemon Garlic Pasta"],
+      items: [
+        "Salmon with Dill Sauce",
+        "Mushroom Risotto",
+        "Lemon Garlic Pasta",
+      ],
     },
   ];
 
@@ -63,9 +85,10 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-muted/30 bg-grain">
+    <div className="min-h-screen bg-muted/30">
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col md:flex-row gap-6">
+          <Navbar />
           {/* Sidebar */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -77,14 +100,19 @@ const Dashboard = () => {
               <CardHeader className="pb-4">
                 <div className="flex items-center space-x-3">
                   <Avatar className="h-12 w-12 border-2 border-primary">
-                    <AvatarImage src={profile?.avatar_url || ""} alt={profile?.full_name || "User"} />
+                    <AvatarImage
+                      src={profile?.avatar_url || ""}
+                      alt={profile?.full_name || "User"}
+                    />
                     <AvatarFallback className="bg-primary/10 text-primary">
                       {profile?.full_name?.charAt(0) || "U"}
                     </AvatarFallback>
                   </Avatar>
                   <div>
                     <p className="font-medium">{profile?.full_name}</p>
-                    <p className="text-sm text-muted-foreground">{user?.email}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {user?.email}
+                    </p>
                   </div>
                 </div>
               </CardHeader>
@@ -117,8 +145,8 @@ const Dashboard = () => {
                 </nav>
               </CardContent>
               <CardFooter className="pt-2">
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="w-full justify-start text-destructive"
                   onClick={logout}
                 >
@@ -130,7 +158,7 @@ const Dashboard = () => {
           </motion.div>
 
           {/* Main Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -140,10 +168,11 @@ const Dashboard = () => {
               {/* Greeting */}
               <div className="mb-8">
                 <h1 className="text-2xl md:text-3xl font-bold mb-2">
-                  Welcome back, {profile?.full_name?.split(' ')[0] || 'User'}!
+                  Welcome back, {profile?.full_name?.split(" ")[0] || "User"}!
                 </h1>
                 <p className="text-muted-foreground">
-                  Manage your meal deliveries and subscription from your dashboard.
+                  Manage your meal deliveries and subscription from your
+                  dashboard.
                 </p>
               </div>
 
@@ -164,7 +193,9 @@ const Dashboard = () => {
                     <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6">
                       <div>
                         <h3 className="font-semibold text-lg">Family Plan</h3>
-                        <p className="text-muted-foreground">5 meals per week</p>
+                        <p className="text-muted-foreground">
+                          5 meals per week
+                        </p>
                         <p className="text-sm text-muted-foreground mt-1">
                           Next billing: July 1, 2025
                         </p>
@@ -208,8 +239,8 @@ const Dashboard = () => {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Tabs 
-                      defaultValue="upcoming" 
+                    <Tabs
+                      defaultValue="upcoming"
                       value={activeTab}
                       onValueChange={setActiveTab}
                       className="space-y-4"
@@ -220,16 +251,23 @@ const Dashboard = () => {
                       </TabsList>
                       <TabsContent value="upcoming" className="space-y-4">
                         {upcomingDeliveries.map((delivery) => (
-                          <div key={delivery.id} className="border rounded-lg p-4 space-y-3">
+                          <div
+                            key={delivery.id}
+                            className="border rounded-lg p-4 space-y-3"
+                          >
                             <div className="flex justify-between items-start">
                               <div>
                                 <div className="flex items-center gap-2">
                                   <Calendar className="h-4 w-4 text-primary" />
-                                  <h3 className="font-medium">{delivery.date}</h3>
+                                  <h3 className="font-medium">
+                                    {delivery.date}
+                                  </h3>
                                 </div>
                                 <div className="flex items-center gap-2 mt-1 text-sm text-muted-foreground">
                                   <Clock className="h-3 w-3" />
-                                  <span>Delivery between 2:00 PM - 6:00 PM</span>
+                                  <span>
+                                    Delivery between 2:00 PM - 6:00 PM
+                                  </span>
                                 </div>
                               </div>
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-primary">
@@ -255,12 +293,17 @@ const Dashboard = () => {
                       </TabsContent>
                       <TabsContent value="past" className="space-y-4">
                         {pastDeliveries.map((delivery) => (
-                          <div key={delivery.id} className="border rounded-lg p-4 space-y-3">
+                          <div
+                            key={delivery.id}
+                            className="border rounded-lg p-4 space-y-3"
+                          >
                             <div className="flex justify-between items-start">
                               <div>
                                 <div className="flex items-center gap-2">
                                   <Calendar className="h-4 w-4 text-muted-foreground" />
-                                  <h3 className="font-medium">{delivery.date}</h3>
+                                  <h3 className="font-medium">
+                                    {delivery.date}
+                                  </h3>
                                 </div>
                               </div>
                               <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-muted text-muted-foreground">
@@ -291,9 +334,9 @@ const Dashboard = () => {
           </motion.div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default Dashboard;
-

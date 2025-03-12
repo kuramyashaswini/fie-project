@@ -1,29 +1,32 @@
-
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Tasty Trail has transformed our weeknight dinners. No more stressing about what to cook - just delicious meals ready in minutes!",
+    quote:
+      "Tasty Trail has transformed our weeknight dinners. No more stressing about what to cook - just delicious meals ready in minutes!",
     author: "Sarah M.",
-    role: "Busy parent of two",
-    image: "https://i.pravatar.cc/100?img=1",
-  },
-  {
-    quote: "The quality and taste of these meals is incredible. It's like having a personal chef without the expense. I'm a customer for life!",
-    author: "James L.",
-    role: "Working professional",
+    role: "Busy parented by two",
     image: "https://i.pravatar.cc/100?img=2",
   },
   {
-    quote: "As someone who loves good food but hates grocery shopping, Tasty Trail is a game-changer. Fresh, homestyle meals with zero effort.",
-    author: "Emily K.",
-    role: "Graduate student",
+    quote:
+      "The quality and taste of these meals is incredible. It's like having a personal chef without the expense. I'm a customer for life!",
+    author: "James L.",
+    role: "Working professional",
     image: "https://i.pravatar.cc/100?img=3",
   },
   {
-    quote: "The meals remind me of my grandmother's cooking - comfort food with a modern twist. I love the seasonal menu changes!",
+    quote:
+      "As someone who loves good food but hates grocery shopping, Tasty Trail is a game-changer. Fresh, homestyle meals with zero effort.",
+    author: "Emily K.",
+    role: "Graduate student/Youtuber",
+    image: "https://i.pravatar.cc/100?img=1",
+  },
+  {
+    quote:
+      "The meals remind me of my grandmother's cooking - comfort food with a modern twist. I love the seasonal menu changes!",
     author: "Michael R.",
     role: "Food enthusiast",
     image: "https://i.pravatar.cc/100?img=4",
@@ -69,15 +72,15 @@ const Testimonials = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, x: 20 }}
-                animate={{ 
+                animate={{
                   opacity: current === index ? 1 : 0,
                   x: current === index ? 0 : 20,
-                  position: current === index ? "relative" : "absolute"
+                  position: current === index ? "relative" : "absolute",
                 }}
                 transition={{ duration: 0.5 }}
                 className="text-center"
-                style={{ 
-                  display: current === index ? "block" : "none"
+                style={{
+                  display: current === index ? "block" : "none",
                 }}
               >
                 <p className="text-xl md:text-2xl italic mb-8 text-foreground">
@@ -91,7 +94,9 @@ const Testimonials = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <h4 className="font-semibold text-lg">{testimonial.author}</h4>
+                  <h4 className="font-semibold text-lg">
+                    {testimonial.author}
+                  </h4>
                   <p className="text-muted-foreground">{testimonial.role}</p>
                 </div>
               </motion.div>

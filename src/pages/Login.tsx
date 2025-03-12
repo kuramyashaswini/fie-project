@@ -1,10 +1,16 @@
-
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { ShoppingBag, Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/useAuth";
@@ -41,7 +47,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-grain">
+    <div
+      className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-grain"
+      style={{ backgroundColor: "#f5f5f5" }}
+    >
       <div className="absolute inset-0 pointer-events-none opacity-20">
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
@@ -54,7 +63,10 @@ const Login = () => {
         className="max-w-md w-full space-y-8"
       >
         <div className="text-center">
-          <Link to="/" className="inline-flex items-center gap-2 text-2xl font-bold text-primary">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-2xl font-bold text-primary"
+          >
             <ShoppingBag className="h-8 w-8" />
             <span>Tasty Trail</span>
           </Link>
@@ -87,7 +99,10 @@ const Login = () => {
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
                   <Label htmlFor="password">Password</Label>
-                  <Link to="/forgot-password" className="text-sm text-primary hover:underline">
+                  <Link
+                    to="/forgot-password"
+                    className="text-sm text-primary hover:underline"
+                  >
                     Forgot password?
                   </Link>
                 </div>
@@ -129,9 +144,7 @@ const Login = () => {
         </Card>
 
         <div className="text-center text-sm text-muted-foreground mt-6">
-          <p>
-            Demo account: demo@example.com / password
-          </p>
+          <p>Demo account: demo@example.com / password</p>
         </div>
       </motion.div>
     </div>
