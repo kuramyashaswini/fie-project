@@ -57,6 +57,12 @@ const Navbar = () => {
               How It Works
             </Link>
             <Link
+              to="/blog"
+              className="text-foreground hover:text-primary transition-colors"
+            >
+              Blog
+            </Link>
+            <Link
               to="/contact"
               className="text-foreground hover:text-primary transition-colors"
             >
@@ -123,6 +129,13 @@ const Navbar = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 How It Works
+              </Link>
+              <Link
+                to="/blog"
+                className="py-2 text-foreground hover:text-primary transition-colors"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Blog
               </Link>
               <Link
                 to="/contact"

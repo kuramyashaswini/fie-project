@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import FoodCategories from "@/components/FoodCategories";
 import Plans from "@/components/Plans";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
@@ -28,6 +29,9 @@ const Index = () => {
         <Hero />
         
         <Features />
+        
+        {/* Food Categories Section */}
+        <FoodCategories />
         
         <motion.div
           ref={ref}

@@ -21,6 +21,13 @@ import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
 import Shipping from "./pages/Shipping";
 import Refund from "./pages/Refund";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+
+// Food Category Pages
+import Tiffins from "./pages/food/Tiffins";
+import Lunch from "./pages/food/Lunch";
+import Dinner from "./pages/food/Dinner";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +52,16 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/shipping" element={<Shipping />} />
               <Route path="/refund" element={<Refund />} />
+              
+              {/* Blog Routes */}
+              <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/:slug" element={<BlogPost />} />
+              
+              {/* Food Category Routes */}
+              <Route path="/food/tiffins" element={<Tiffins />} />
+              <Route path="/food/lunch" element={<Lunch />} />
+              <Route path="/food/dinner" element={<Dinner />} />
+              
               <Route path="*" element={<NotFound />} />
             </Routes>
           </AnimatePresence>
