@@ -1,26 +1,53 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, User, ShoppingBag } from "lucide-react";
+import { Menu, X, User, ShoppingBag, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAuth } from "@/hooks/useAuth";
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { user, profile, isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isDashboard = location.pathname === "/dashboard";
 
   // Add scroll effect
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      setIsScrolled(true);
-    } else {
-      setIsScrolled(false);
-    }
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+    setIsMenuOpen(false);
+  };
 
   return (
     <nav
       className={`fixed top-0 z-50 w-full text-white transition-all duration-300 ${
-        isScrolled
+        isScrolled || isDashboard
           ? "backdrop-blur-md bg-background/80 shadow-md py-3"
           : "bg-transparent py-5"
       }`}
@@ -80,20 +107,50 @@ const Navbar = () => {
             </Link>
           </div>
 
-          {/* Auth Buttons */}
+          {/* Auth Buttons or User Profile */}
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/login">
-              <Button
-                variant="ghost"
-                className="flex items-center gap-2 text-orange-500 hover:text-black transition-colors"
-              >
-                <User className="h-4 w-4" />
-                Login
-              </Button>
-            </Link>
-            <Link to="/signup">
-              <Button className="rounded-full">Get Started</Button>
-            </Link>
+            {isAuthenticated ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="flex items-center gap-2 text-orange-500 hover:text-black hover:bg-orange-500/10 transition-colors">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src={profile?.avatar_url || ""} alt={profile?.full_name || "User"} />
+                      <AvatarFallback className="bg-primary/10 text-primary">
+                        {profile?.full_name?.charAt(0) || "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                    <span className="font-medium">
+                      {profile?.full_name?.split(' ')[0] || user?.email?.split('@')[0] || "User"}
+                    </span>
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                    Dashboard
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="text-red-500">
+                    Sign Out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Link to="/login">
+                  <Button
+                    variant="ghost"
+                    className="flex items-center gap-2 text-orange-500 hover:text-black transition-colors"
+                  >
+                    <User className="h-4 w-4" />
+                    Login
+                  </Button>
+                </Link>
+                <Link to="/signup">
+                  <Button className="rounded-full">Get Started</Button>
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -158,18 +215,44 @@ const Navbar = () => {
                 Contact
               </Link>
               <div className="flex flex-col gap-2 pt-2 border-t border-border">
-                <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-start text-white"
-                  >
-                    <User className="h-4 w-4 mr-2" />
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
-                  <Button className="w-full">Get Started</Button>
-                </Link>
+                {isAuthenticated ? (
+                  <>
+                    <Button
+                      variant="ghost"
+                      className="w-full justify-start text-foreground"
+                      onClick={() => {
+                        navigate("/dashboard");
+                        setIsMenuOpen(false);
+                      }}
+                    >
+                      <User className="h-4 w-4 mr-2" />
+                      Dashboard
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start text-destructive"
+                      onClick={handleLogout}
+                    >
+                      <LogOut className="h-4 w-4 mr-2" />
+                      Sign Out
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                      <Button
+                        variant="ghost"
+                        className="w-full justify-start text-white"
+                      >
+                        <User className="h-4 w-4 mr-2" />
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to="/signup" onClick={() => setIsMenuOpen(false)}>
+                      <Button className="w-full">Get Started</Button>
+                    </Link>
+                  </>
+                )}
               </div>
             </div>
           </motion.div>

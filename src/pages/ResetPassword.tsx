@@ -16,6 +16,7 @@ import { ShoppingBag, Eye, EyeOff, Lock, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -24,6 +25,7 @@ const ResetPassword = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [isValidToken, setIsValidToken] = useState(true);
+  const [showDialog, setShowDialog] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
 
@@ -69,6 +71,7 @@ const ResetPassword = () => {
       if (error) throw error;
       
       setIsSuccess(true);
+      setShowDialog(true);
       toast({
         title: "Password Updated",
         description: "Your password has been successfully updated.",
@@ -77,7 +80,7 @@ const ResetPassword = () => {
       // Redirect after a short delay
       setTimeout(() => {
         navigate("/login");
-      }, 3000);
+      }, 5000);
     } catch (error) {
       toast({
         title: "Error",
@@ -114,6 +117,34 @@ const ResetPassword = () => {
         <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-3xl" />
       </div>
+
+      <Dialog open={showDialog} onOpenChange={setShowDialog}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <CheckCircle2 className="h-6 w-6 text-green-500" /> 
+              Password Reset Successful
+            </DialogTitle>
+            <DialogDescription>
+              Your password has been successfully updated.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex justify-center py-4">
+            <CheckCircle2 className="h-16 w-16 text-green-500" />
+          </div>
+          <p className="text-center">
+            You will be redirected to the login page shortly.
+          </p>
+          <DialogFooter>
+            <Button 
+              onClick={() => navigate("/login")} 
+              className="w-full"
+            >
+              Go to Login Now
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -45,6 +46,12 @@ const Dashboard = () => {
     const timer = setTimeout(() => setProgress(66), 500);
     return () => clearTimeout(timer);
   }, []);
+
+  // Handle logout
+  const handleLogout = async () => {
+    await logout();
+    navigate("/");
+  };
 
   const upcomingDeliveries = [
     {
@@ -148,7 +155,7 @@ const Dashboard = () => {
                 <Button
                   variant="outline"
                   className="w-full justify-start text-destructive"
-                  onClick={logout}
+                  onClick={handleLogout}
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Sign Out
