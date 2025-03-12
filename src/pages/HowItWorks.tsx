@@ -1,13 +1,15 @@
-
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { List, Compass, Workflow, Puzzle } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const HowItWorks = () => {
   const steps = [
     {
       title: "Choose Your Plan",
-      description: "Select a meal plan that fits your lifestyle and preferences.",
+      description:
+        "Select a meal plan that fits your lifestyle and preferences.",
       icon: <List className="h-8 w-8" />,
     },
     {
@@ -17,12 +19,14 @@ const HowItWorks = () => {
     },
     {
       title: "We Prepare & Deliver",
-      description: "Our chefs prepare your meals with fresh ingredients and deliver them to your door.",
+      description:
+        "Our chefs prepare your meals with fresh ingredients and deliver them to your door.",
       icon: <Workflow className="h-8 w-8" />,
     },
     {
       title: "Heat & Eat",
-      description: "Simply heat your meals following our instructions and enjoy restaurant-quality food at home.",
+      description:
+        "Simply heat your meals following our instructions and enjoy restaurant-quality food at home.",
       icon: <Puzzle className="h-8 w-8" />,
     },
   ];
@@ -34,11 +38,13 @@ const HowItWorks = () => {
       exit={{ opacity: 0 }}
       className="min-h-screen pt-24 pb-16"
     >
+      <Navbar />
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h1 className="text-4xl font-bold mb-6">How Tasty Trail Works</h1>
           <p className="text-lg text-muted-foreground">
-            Get delicious, chef-prepared meals delivered to your door in four simple steps.
+            Get delicious, chef-prepared meals delivered to your door in four
+            simple steps.
           </p>
         </div>
 
@@ -60,16 +66,18 @@ const HowItWorks = () => {
 
         <div className="mt-16 text-center">
           <img
-            src="https://atchayapathrafoods.com/wp-content/uploads/2019/11/Homemade-Food-Delivery-Services-in-Madurai.jpg"
+            src="../../public/img.jpg"
             alt="Meal preparation"
             className="rounded-lg max-w-4xl mx-auto mb-8"
           />
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Our chefs use only the freshest ingredients to prepare your meals, ensuring you get
-            restaurant-quality dining experience in the comfort of your home.
+            Our chefs use only the freshest ingredients to prepare your meals,
+            ensuring you get restaurant-quality dining experience in the comfort
+            of your home.
           </p>
         </div>
       </div>
+      <Footer />
     </motion.div>
   );
 };
